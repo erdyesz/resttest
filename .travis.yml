@@ -33,9 +33,7 @@ before_install:
   - chmod +x pom.xml
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
   - git lfs pull
-  - docker pull tomcat
-  #- docker run -it --rm tomcat:8.0
-  - curl http://127.0.0.1:8080/
+  - docker-compose up
   
   
 # This two-phase mapping is not relevant for Maven projects as Maven uses a lazy approach: 
