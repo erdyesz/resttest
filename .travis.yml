@@ -4,7 +4,7 @@ jdk:
   - oraclejdk8
 
 # If you need a more customizable environment running in a virtual machine, use the Sudo Enabled infrastructure
-sudo: false
+sudo: required
 
 # If you have tests that need to run on linux
 os:
@@ -33,6 +33,7 @@ before_install:
   - chmod +x pom.xml
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
   - git lfs pull
+  - docker ps -a
   
   
 # This two-phase mapping is not relevant for Maven projects as Maven uses a lazy approach: 
