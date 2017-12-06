@@ -7,6 +7,11 @@ jdk:
   - oraclejdk7
 sudo: false
 
+# Improve Build Speed
+cache:
+  directories:
+  - $HOME/.m2
+
 # grant the needed permission
 before_install:
   - chmod +x pom.xml
@@ -16,13 +21,4 @@ before_install:
 # For a more idiomatic management, the first phase can be bypassed, while the second one just needs to be set:
 install: true
 script:
-    - mvn clean install -DskipTests=true
-
-# Improve Build Speed
-cache:
-  directories:
-  - $HOME/.m2
-
-  
-
-
+    - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
