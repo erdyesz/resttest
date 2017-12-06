@@ -6,6 +6,6 @@ services:
     ports:
        - "8095:8095"
     volumes:
-       - /home/travis/build/erdyesz/resttest/target/RestDemo-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/RestDemo-0.0.1-SNAPSHOT.war
+       - ./RestDemo-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/RestDemo-0.0.1-SNAPSHOT.war
 
 # curl -X GET  http://localhost:8080/RestDemo/security/status
