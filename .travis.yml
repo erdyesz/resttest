@@ -7,9 +7,20 @@ jdk:
   - oraclejdk7
 sudo: false
 
+# grant the needed permission
+before_install:
+  - chmod +x pom.xml
+
+# This two-phase mapping is not relevant for Maven projects as Maven uses a lazy approach: 
+# if dependencies are not in the local repository, they will be downloaded when required. 
+# For a more idiomatic management, the first phase can be bypassed, while the second one just needs to be set:
 install: true
 script: ./mvnw clean install
 
+# Improve Build Speed
+cache:
+  directories:
+  - $HOME/.m2
 
   
 
