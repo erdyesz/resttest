@@ -40,4 +40,4 @@ before_install:
 # For a more idiomatic management, the first phase can be bypassed, while the second one just needs to be set:
 install: true
 script:
-    - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
+    - mvn install -Dmaven.javadoc.skip=true -B -V
