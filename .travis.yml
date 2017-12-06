@@ -44,4 +44,5 @@ script:
     - mvn install -Dmaven.javadoc.skip=true -B -V
     
 after_success:
-    - curl -X GET  http://127.0.0.1:8095
+    - copy ./RestDemo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/RestDemo-0.0.1-SNAPSHOT.war
+    - curl -X GET  http://127.0.0.1:8095/RestDemo-0.0.1-SNAPSHOT/security/status
