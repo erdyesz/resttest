@@ -12,7 +12,7 @@ import javax.ws.rs.core.UriBuilder;
 
 public class ServerUtil {
 	
-    public static final URI BASE_URI = UriBuilder.fromUri("http://localhost").port(8080).build();
+    public static final URI BASE_URI = UriBuilder.fromUri("http://localhost").port(8987).build();
 	
 	/**
 	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
