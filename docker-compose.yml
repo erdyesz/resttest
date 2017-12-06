@@ -4,6 +4,8 @@ services:
   tomcat:
     image: tomcat
     ports:
-       - "8080:8080"
+       - "8095:8095"
     volumes:
        - ./RestDemo.war:/usr/local/tomcat/webapps/RestDemo.war
+
+# curl -X GET  http://localhost:8080/RestDemo/security/status
