@@ -22,12 +22,11 @@ cache:
 branches:
   only:
   - master
-  - integration 
   
 # blocklist
 branches:
   except:
-  - integration4  
+  - integration  
 
 # grant the needed permission
 before_install:
@@ -41,4 +40,4 @@ before_install:
 # For a more idiomatic management, the first phase can be bypassed, while the second one just needs to be set:
 install: true
 script:
-    - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
