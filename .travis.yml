@@ -43,5 +43,5 @@ install: true
 script:
     - mvn install -Dmaven.javadoc.skip=true -B -V
     
-script:
+after_success:
     - curl -X GET  http://127.0.0.1:8095
