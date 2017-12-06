@@ -34,7 +34,7 @@ before_install:
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
   - git lfs pull
   - docker pull tomcat
-  - docker run -it --rm tomcat:8.0
+  #- docker run -it --rm tomcat:8.0
   - curl http://127.0.0.1:8080/
   
   
