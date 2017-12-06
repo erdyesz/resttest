@@ -22,11 +22,12 @@ cache:
 branches:
   only:
   - master
+  - integration 
   
 # blocklist
 branches:
   except:
-  - integration  
+  - integration4  
 
 # grant the needed permission
 before_install:
