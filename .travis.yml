@@ -33,7 +33,7 @@ before_install:
   - chmod +x pom.xml
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
   - git lfs pull
-  - docker build --no-cache -t unidata/tomcat-docker:latest .
+  #- docker build --no-cache -t unidata/tomcat-docker:latest .
   - docker ps -a
   
   
