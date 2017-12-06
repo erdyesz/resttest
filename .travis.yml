@@ -36,10 +36,12 @@ before_install:
   - docker-compose up -d
   
   
-  
 # This two-phase mapping is not relevant for Maven projects as Maven uses a lazy approach: 
 # if dependencies are not in the local repository, they will be downloaded when required. 
 # For a more idiomatic management, the first phase can be bypassed, while the second one just needs to be set:
 install: true
 script:
     - mvn install -Dmaven.javadoc.skip=true -B -V
+    
+after_install:
+    - curl -X GET  http://127.0.0.1:80950/RestDemo/security/status
