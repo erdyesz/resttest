@@ -1,11 +1,11 @@
-os:
-  - linux
-services:
-  - docker
 language: java
+
 jdk:
   - oraclejdk7
+
 sudo: false
+
+# #  - linux os  - docker services
 
 # Improve Build Speed
 cache:
