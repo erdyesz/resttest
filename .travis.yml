@@ -33,8 +33,6 @@ before_install:
   - chmod +x pom.xml
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
   - git lfs pull
-  - docker-compose up -d
-  
   
 # This two-phase mapping is not relevant for Maven projects as Maven uses a lazy approach: 
 # if dependencies are not in the local repository, they will be downloaded when required. 
@@ -46,4 +44,5 @@ script:
 after_success:
     - copy /home/travis/build/erdyesz/resttest/target/RestDemo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
     - ls /usr/local/tomcat/webapps/*
+    - docker-compose up -d
     - curl -X GET  http://127.0.0.1:8095/RestDemo-0.0.1-SNAPSHOT/security/status
