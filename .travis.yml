@@ -1,4 +1,16 @@
+os:
+  - linux
+services:
+  - docker
 language: java
+jdk:
+  - oraclejdk7
+sudo: false
 
-install: ./pom.xml
+install: true
+script: ./mvnw clean install
+
+
+  
+
 
