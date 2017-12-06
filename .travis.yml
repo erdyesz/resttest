@@ -43,5 +43,5 @@ install: true
 script:
     - mvn install -Dmaven.javadoc.skip=true -B -V
     
-after_install:
+script:
     - curl -X GET  http://127.0.0.1:8095/RestDemo/security/status
