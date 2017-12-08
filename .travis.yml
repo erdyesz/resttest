@@ -44,8 +44,8 @@ script:
 after_success:
     - pwd
     - docker build -t jetty_example/myjetty9 .
-    - docker run -p 8778:8080 -d --name test  jetty_example/myjetty9 
-    - curl -X GET  http://localhost:8778/security/status
-    - docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker stop
-    - docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker rm
+    - docker run -p 8778:8080 jetty_example/myjetty9 
+    - curl -X GET  http://127.0.0.1:8778/security/status
+    #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker stop
+    #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker rm
     
