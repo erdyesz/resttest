@@ -30,10 +30,13 @@ script:
 
 after_success:
 - pwd
-- docker build -t jetty_example/myjetty9 .
 - pip install --user awscli
 - export PATH=$PATH:$HOME/.local/bin
 - eval $(aws ecr get-login --region us-east-2)
+- docker build -t jetty_example/myjetty9 .
+- docker tag jetty_example/myjetty9:latest 961617510908.dkr.ecr.us-east-2.amazonaws.com/demo/repo/jetty_example/myjetty9:latest
+- docker push 961617510908.dkr.ecr.us-east-2.amazonaws.com/demo/repo/jetty_example/myjetty9:latest
+
 
 env:
   global:
