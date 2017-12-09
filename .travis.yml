@@ -50,4 +50,6 @@ after_success:
     #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker rm
     - pip install --user awscli # install aws cli w/o sudo
     - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+    - eval $(aws ecr get-login --region us-east-2) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+    
     
