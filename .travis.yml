@@ -52,8 +52,7 @@ after_success:
     - export PATH=$PATH:$HOME/.local/bin # put aws in the path
     - eval $(aws ecr get-login --region us-east-2) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
     
-travis encrypt AWS_ACCESS_KEY_ID=AKIAJOGTPHVHS2UNQ56A --add
-travis encrypt AWS_SECRET_ACCESS_KEY=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 --add
+
 
 
 
