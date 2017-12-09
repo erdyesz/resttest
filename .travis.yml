@@ -48,4 +48,6 @@ after_success:
     #- curl -X GET  http://127.0.0.1:8778/security/status
     #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker stop
     #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker rm
+    - pip install --user awscli # install aws cli w/o sudo
+    - export PATH=$PATH:$HOME/.local/bin # put aws in the path
     
