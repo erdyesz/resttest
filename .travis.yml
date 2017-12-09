@@ -1,59 +1,41 @@
 language: java
-
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
-# If you need a more customizable environment running in a virtual machine, use the Sudo Enabled infrastructure
 sudo: required
 
-# If you have tests that need to run on linux
 os:
-  - linux 
+- linux
 
-services:  
-  - docker 
+services:
+- docker
 
-# Improve Build Speed
 cache:
   directories:
   - $HOME/.m2
-
-# safelist
-branches:
-  only:
-  - master
   
-# blocklist
 branches:
   except:
-  - integration  
-
-# grant the needed permission
-before_install:
-  - chmod +x pom.xml
-  - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
-  - git lfs pull
+  - integration
   
-# This two-phase mapping is not relevant for Maven projects as Maven uses a lazy approach: 
-# if dependencies are not in the local repository, they will be downloaded when required. 
-# For a more idiomatic management, the first phase can be bypassed, while the second one just needs to be set:
+before_install:
+- chmod +x pom.xml
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
+- git lfs pull
+
 install: true
+
 script:
-    - mvn install -Dmaven.javadoc.skip=true -B -V
-    
+- mvn install -Dmaven.javadoc.skip=true -B -V
+
 after_success:
-    - pwd
-    - docker build -t jetty_example/myjetty9 .
-    #- docker run -p 8778:8080 jetty_example/myjetty9 
-    #- curl -X GET  http://127.0.0.1:8778/security/status
-    #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker stop
-    #- docker ps -a | awk '{ print $1,$2 }' |grep jetty|awk '{ print $1 }'|xargs docker rm
-    - pip install --user awscli # install aws cli w/o sudo
-    - export PATH=$PATH:$HOME/.local/bin # put aws in the path
-    - eval $(aws ecr get-login --region us-east-2) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-    
+- pwd
+- docker build -t jetty_example/myjetty9 .
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
+- eval $(aws ecr get-login --region us-east-2)
 
-
-
-
-    
+env:
+  global:
+  - secure: SJQ3/NQjYPECXmGoB9PaE9IJaqhncrQA7bI1o28Awve+Js4zZzdHY5D88THwjULwAYWD/NDH/UvWr1D1pES0WMYn2EwaQNYegI0azkgpt9GAcIsshUvP7o6WyhPdu9dlCAFTg/6ObFJXP/hOQpxmRf/CyExXLHXYdHEHnyHXpdK0/izf2Qfp1aPGlTHoZV5s4ds/S3tFX0XAyQ2pyLswkLAqWSYSjobFxtZB5nqy73iJfoOzRQUg2BH3mu2XTgXq9mqWiQMN+xNqKKScucBfu4I/C0r/GbbvdxicHvP7dLBJ7Ye2yafkQdnXOwkxRRrnyMeEfvIkDj/ruDUpMP+nS4SqX4nnTBNFv8YfwsXlpoFkI5/SgjpGnkFO7EP4fTyWqIVCuPcxbbKnp0/3EtgaGJuOWjRQrR/ZBzZnZw5LToQLC/kTLvx2Q2tYYE04gMng4X+h4hlOhewtoeDSS05tmdOTKHxo69qizJ1tphphNu/K7ibDkp36tWjpURDDd5sSHdEQirmF5/aNLlZFLmQAMrmC+JqEcNKoyVi1wBASeAfDS3Rgj0KWoZxvzc+xIxaKZY/8vHUNNwqFUgqq0WlyKH0XDETlMJK6hu31eWEDT9WLYgQSG14vYI/+MsKCOADjsRn4qne77JhZ3TcLI7qUgow9jEF9x+dTmUJrzCjlbi0=
+  - secure: HG5t3cH+YJev3NN+fcSrk+2JTohfsaBceoPd+t28VqTOaFMePp1vhjKWG9RMEFCKOA2mEbiFO0y4JMHDj7R2CDeIvkCd9F7tJQDOUVZiRvFp9jlyWRD14pfUuQIBCfkqbAzolJwXr3IINWaEE12Egkxcgmguz7mtNyZg+RnW7V5MljQ+T8EtnGYzBUwIbZnCRUKjcZ9jnh3kGwYLXRUfaR3r8niuhyqPDxKEw0iwUEsQa+mcFCNIOdbGD2+oX2JsQRUaLiC4y/FfCSaCl28hPEDippGW8RjMrSsJ0seG8T+MePsEIA/GcACLV8FaxraxEn2qMQ2e/D3BjFmC7edd2u9CGWv6FgaCderY+XbHZQMFlErZ6zIEDbOBCk42HymKorvqM5ybPVosLSNRz9yO0Y95IIrDeFBJf9P+iLRZmQxxoe7aAI9RQxpNHiogNqmTEdTJfUb4oAq2rSDgPD6NDQRo3kHljlaYNrrE6xNZmhk8f+EW2ipFiiGd9OKu7qoDyA92DQpUMt8BBCnD/53uFR2ASPvB1ECUCC0OpAGX8qPLlipeJ8t15j25fWeb+ch2IFpOOCekkPWHSRN+vkHnpTadUpRMcoR13YRE4OI8dsF79RuzkL7Yx8GD4gaY46N2wKBsEsF4LSzvo0mzT5JFonbB/BSDEq1l/jPVE/D0ypc=
