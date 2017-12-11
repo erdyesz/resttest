@@ -9,6 +9,8 @@ if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     pip install urllib3[secure]
     pip install --user awscli
     export PATH=$PATH:$HOME/.local/bin
+    echo "Pushing2 $AWS_DEFAULT_REGION"
+    echo "Pushing3 $IMAGE_NAME"
     eval $(aws ecr get-login --region $AWS_DEFAULT_REGION)
     eval $(aws ecr get-login --region us-east-2)
 
