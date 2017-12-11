@@ -6,6 +6,7 @@ if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
     # This is needed to login on AWS and push the image on ECR
     # Change it accordingly to your docker repo
+    pip install pyopenssl ndg-httpsclient pyasn1
     pip install --user awscli
     export PATH=$PATH:$HOME/.local/bin
     eval $(aws ecr get-login --region $AWS_DEFAULT_REGION)
