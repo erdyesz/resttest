@@ -3,6 +3,7 @@ package com.rest.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -32,7 +33,6 @@ import com.rest.model.StatusMessage;
 import com.rest.model.User;
 import com.rest.model.builder.StatusMessageBuilder;
 import com.rest.security.JsonWebKeyRepo;
-import com.rest.service.interceptor.Compress;
 import com.rest.util.JWTUtil;
 
  
@@ -94,7 +94,7 @@ public class JwtSecurityRestExample {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String returnVersion() {
-		return "JwtSecurityExample Status is OK";
+		return "JwtSecurityExample Status is OK at " + (new Date());
 	}
 	
 	@Path("/statusp")
