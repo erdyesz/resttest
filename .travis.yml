@@ -25,6 +25,7 @@ script:
 after_success:
 - pwd
 - bin/docker_push.sh
+- bin/docker_deploy.sh
 env:
   global:
   - AWS_DEFAULT_REGION=us-east-2
