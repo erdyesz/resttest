@@ -6,10 +6,10 @@ if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo "Deploying $TRAVIS_BRANCH on $TASK_DEFINITION"
     pwd
     ls
-    #./bin/ecs_deploy.sh -c $CLUSTER_NAME -n $SERVICE -i $REMOTE_IMAGE_URL:$TRAVIS_BRANCH
     echo "$ECS_SERVICE_NAME"
     echo "aws ecs update-service -region $AWS_DEFAULT_REGION -cluster $ECS_CLUSTER_NAME -service $ECS_SERVICE_NAME  -task-definition $ECS_TASK_DEFINITION"
-    eval $(aws ecs update-service --region "${AWS_DEFAULT_REGION}" --cluster "${ECS_CLUSTER_NAME}" --service "${ECS_SERVICE_NAME}"  --task-definition "${ECS_TASK_DEFINITION}")
+    eval $(aws ecs update-service --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME  --task-definition $ECS_TASK_DEFINITION)
+    echo "$ECS_SERVICE_NAME"
   else
     echo "Skipping deploy because it's not an allowed branch"
   fi
