@@ -7,8 +7,10 @@ if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     pwd
     ls
     echo "$ECS_SERVICE_NAME"
-    echo "aws ecs update-service -region $AWS_DEFAULT_REGION -cluster $ECS_CLUSTER_NAME -service $ECS_SERVICE_NAME  -task-definition $ECS_TASK_DEFINITION"
-    eval $(aws ecs update-service --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME  --task-definition $ECS_TASK_DEFINITION)
+    #echo "aws ecs update-service -region $AWS_DEFAULT_REGION -cluster $ECS_CLUSTER_NAME -service $ECS_SERVICE_NAME  -task-definition $ECS_TASK_DEFINITION"
+    #eval $(aws ecs update-service --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME  --task-definition $ECS_TASK_DEFINITION)
+    eval $(aws ecs update-service --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME --task-definition $ECS_TASK_DEFINITION | sed 's|https://||')
+
     echo "$ECS_SERVICE_NAME"
   else
     echo "Skipping deploy because it's not an allowed branch"
