@@ -19,7 +19,7 @@ before_install:
 - git lfs pull
 install: true
 script:
-- mvn install -Dmaven.javadoc.skip=true -B -V
+- mvn clean install -Dmaven.javadoc.skip=true -B -V
 after_success:
 - pwd
 - bin/docker_push.sh
