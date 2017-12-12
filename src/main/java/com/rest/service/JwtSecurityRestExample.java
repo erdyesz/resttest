@@ -1,4 +1,4 @@
-package com.avaldes.service;
+package com.rest.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -26,14 +25,15 @@ import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import org.jose4j.lang.JoseException;
 
-import com.avaldes.model.Item;
-import com.avaldes.model.StatusMessage;
-import com.avaldes.model.StatusMessageBuilder;
-import com.avaldes.model.User;
-import com.avaldes.security.JWTUtil;
-import com.avaldes.security.JsonWebKeyRepo;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.rest.model.Item;
+import com.rest.model.StatusMessage;
+import com.rest.model.User;
+import com.rest.model.builder.StatusMessageBuilder;
+import com.rest.security.JsonWebKeyRepo;
+import com.rest.service.interceptor.Compress;
+import com.rest.util.JWTUtil;
 
  
 /**
@@ -93,7 +93,6 @@ public class JwtSecurityRestExample {
 	@Path("/status")
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	@Compress
 	public String returnVersion() {
 		return "JwtSecurityExample Status is OK...";
 	}
@@ -102,7 +101,6 @@ public class JwtSecurityRestExample {
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
-	@Compress
 	public String returnVersion2(String data) {
 		return "JwtSecurityExample Status is OK..." + data;
 	}
