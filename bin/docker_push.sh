@@ -8,9 +8,8 @@ if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     # Change it accordingly to your docker repo
     pip install --user awscli
     export PATH=$PATH:$HOME/.local/bin
-    echo "Pushing2 $AWS_DEFAULT_REGION"
-    echo "Pushing3 $IMAGE_NAME"
-    
+
+    # ecs login
     eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||')
 
     # Build and push
