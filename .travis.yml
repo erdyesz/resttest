@@ -22,12 +22,13 @@ script:
 - mvn install -Dmaven.javadoc.skip=true -B -V
 after_success:
 - pwd
-- pip install --user awscli
-- export PATH=$PATH:$HOME/.local/bin
-- eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||')
-- docker build -t $IMAGE_NAME .
-- docker tag $IMAGE_NAME:latest $REMOTE_IMAGE_URL
-- docker push $REMOTE_IMAGE_URL
+- bin/docker_push.sh
+#- pip install --user awscli
+#- export PATH=$PATH:$HOME/.local/bin
+#- eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||')
+#- docker build -t $IMAGE_NAME .
+#- docker tag $IMAGE_NAME:latest $REMOTE_IMAGE_URL
+#- docker push $REMOTE_IMAGE_URL
 env:
   global:
   - AWS_DEFAULT_REGION=us-east-2
