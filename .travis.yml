@@ -24,10 +24,10 @@ after_success:
 - pwd
 - pip install --user awscli
 - export PATH=$PATH:$HOME/.local/bin
-- eval $(aws ecr get-login --region us-east-2 --no-include-email | sed 's|https://||')
-- docker build -t jetty_rest_sample .
-- docker tag jetty_rest_sample:latest 961617510908.dkr.ecr.us-east-2.amazonaws.com/jetty_rest_sample:latest
-- docker push 961617510908.dkr.ecr.us-east-2.amazonaws.com/jetty_rest_sample:latest
+- eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||')
+- docker build -t $IMAGE_NAME .
+- docker tag $IMAGE_NAME:latest $REMOTE_IMAGE_URL
+- docker push $REMOTE_IMAGE_URL
 env:
   global:
   - AWS_DEFAULT_REGION=us-east-2
