@@ -94,7 +94,7 @@ public class JwtSecurityRestExample {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String returnVersion() {
-		return "JwtSecurityExample Status is OK...";
+		return "JwtSecurityExample Status is OK";
 	}
 	
 	@Path("/statusp")
