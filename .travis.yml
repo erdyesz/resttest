@@ -31,13 +31,13 @@ script:
 
 after_success:
 - pwd
-- bin/docker_push.sh
-#- pip install --user awscli
-#- export PATH=$PATH:$HOME/.local/bin
-#- eval $(aws ecr get-login --region us-east-2)
-#- docker build -t my_jetty_app .
-#- docker tag my_jetty_app:latest 961617510908.dkr.ecr.us-east-2.amazonaws.com/my_jetty_app:latest
-#- docker push 961617510908.dkr.ecr.us-east-2.amazonaws.com/my_jetty_app:latest
+#- bin/docker_push.sh
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
+- eval $(aws ecr get-login --region us-east-2)
+- docker build -t my_jetty_app .
+- docker tag my_jetty_app:latest 961617510908.dkr.ecr.us-east-2.amazonaws.com/my_jetty_app:latest
+- docker push 961617510908.dkr.ecr.us-east-2.amazonaws.com/my_jetty_app:latest
 
 
 env:
