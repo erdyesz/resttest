@@ -25,7 +25,7 @@ script:
 after_success:
 - pwd
 - bin/docker_push.sh
-- eval $(aws ecs update-service --region $AWS_DEFAULT_REGION --cluster $ECS_CLUSTER_NAME --service asdrcv )
+- eval $(aws ecs update-service --region us-east-2 --cluster jetty07 --service asdrcv )
 env:
   global:
   - AWS_DEFAULT_REGION=us-east-2
