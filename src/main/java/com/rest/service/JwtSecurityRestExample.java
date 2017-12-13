@@ -3,7 +3,6 @@ package com.rest.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -25,6 +24,8 @@ import org.jose4j.jwk.RsaJsonWebKey;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import org.jose4j.lang.JoseException;
+
+import redis.clients.jedis.Jedis;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -89,12 +90,20 @@ public class JwtSecurityRestExample {
 	static Logger logger = Logger.getLogger(JwtSecurityRestExample.class);
 
 	StatusMessageBuilder statusMessageBuilder = new StatusMessageBuilder();  
+	
+	Jedis jedis = new Jedis("redisdemocache.tb70wo.ng.0001.use2.cache.amazonaws.com",6379);
 
 	@Path("/status")
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String returnVersion() {
-		return "JwtSecurityExample Status is OK at time => " + (new Date());
+		String message = jedis.get("status");
+		if (message == null) {
+			jedis.set("status", " from cache");
+			return "JwtSecurityExample Status is OK at time => " + System.currentTimeMillis();
+		} else {
+			return "JwtSecurityExample Status is OK at time => " + System.currentTimeMillis() + message;
+		}
 	}
 	
 	@Path("/statusp")
