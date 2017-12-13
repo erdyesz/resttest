@@ -93,18 +93,18 @@ public class JwtSecurityRestExample {
 	
 	Jedis jedis = new Jedis("redisdemocache.tb70wo.ng.0001.use2.cache.amazonaws.com",6379);
 
-	@Path("/status")
-	@GET
-	@Produces(MediaType.TEXT_HTML)
-	public String returnVersion() {
-		String message = jedis.get("status");
-		if (message == null) {
-			jedis.set("status", " from cache");
-			return "JwtSecurityExample Status is OK at time => " + System.currentTimeMillis();
-		} else {
-			return "JwtSecurityExample Status is OK at time => " + System.currentTimeMillis() + message;
-		}
-	}
+//	@Path("/status")
+//	@GET
+//	@Produces(MediaType.TEXT_HTML)
+//	public String returnVersion() {
+//		String message = jedis.get("status");
+//		if (message == null) {
+//			jedis.set("status", " from cache");
+//			return "JwtSecurityExample Status is OK at time => " + System.currentTimeMillis();
+//		} else {
+//			return "JwtSecurityExample Status is OK at time => " + System.currentTimeMillis() + message;
+//		}
+//	}
 	
 	@Path("/statusp")
 	@POST
